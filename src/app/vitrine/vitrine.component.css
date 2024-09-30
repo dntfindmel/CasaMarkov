@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Marko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
+.carousel-item img {
+  height: 550px; /* Defina a altura fixa */
+  object-fit: cover; /* Ajuste a imagem para cobrir o espaço sem distorção */
+}
+
+p {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.titulo {
+  font-family: "Marko One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  padding: 40px 0 20px
+}
+
+section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.card-div {
+  display: flex;
+  justify-content: space-between
+}
+
+.card:hover {
+  border: 2px solid black;
+}
