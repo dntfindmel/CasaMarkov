@@ -1,0 +1,60 @@
+section {
+  padding: 60px 0;
+}
+
+.detalhe-div {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+}
+
+p {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.titulo {
+  font-family: "Marko One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  padding: 40px 0 20px
+}
+
+.detalhes-info {
+  width: 40%;
+  padding: 50px;
+}
+
+img {
+  padding: 20px;
+}
+
+.text-custom {
+  color: black;
+}
+
+button {
+  margin: 0 20px;
+}
+
+.detalhes-preco{
+  display: flex;
+  align-items: center;
+}
+
+.detalhe-img {
+  border: 1px solid black;
+  padding: 0 50px;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.detalhe-img:hover {
+  transform: scale(1.1);
+  border: 2px solid #800808;
+}

@@ -25,11 +25,28 @@ section {
   margin: 0 auto;
 }
 
+.card {
+  padding: 0 0 15px 0;
+}
+
 .card-div {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .card:hover {
   border: 2px solid black;
+}
+
+.card-img-top:hover {
+  cursor: pointer;
+}
+
+.text-custom {
+  color: black;
+}
+
+button {
+  width: 50%;
+  margin: 0 auto;
 }
