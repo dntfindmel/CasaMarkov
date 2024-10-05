@@ -1,0 +1,16 @@
+button {
+    margin: 0 20px;
+    align-items: right;
+  }
+
+input {
+    border: solid 1px;
+    margin: 0 20px;
+    margin: 5px;  
+    padding: 5px;
+    align-items: right;
+}
+
+.text-custom {
+    color: black;
+  }

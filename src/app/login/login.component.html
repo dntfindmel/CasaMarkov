@@ -1,0 +1,10 @@
+<br>
+<h1>Faça aqui seu Login</h1>
+<br>
+<b>{{mensagem}}</b><br>
+E-mail: <input type="email" [(ngModel)]="obj.email"><br>
+Senha: <input type="password" [(ngModel)]="obj.senha"><br>
+<button (click)="fazerLogin()" type="button" class="btn btn-outline-warning text-custom">Entrar</button> <button type="button" class="btn btn-outline-warning text-custom">Esqueci a senha</button>
+<br> <br> <br>
+<h1>Ainda não tem cadastro?</h1>
+<button (click)="novoCadastro()" type="button" class="btn btn-outline-warning text-custom">Cadastre-se aqui</button>
