@@ -17,7 +17,7 @@ export class CadastroComponent {
 
   public gravar(){
     localStorage.setItem("cliente", JSON.stringify(this.obj));
-    this.mensagem = "cadastro atualizado com sucesso!";
+    this.mensagem = "Cadastro realizado com sucesso!";
   }
 
   public carregar(){

@@ -3,6 +3,10 @@ button {
     align-items: right;
   }
 
+  button.text-custom{
+    color: black;
+  }
+
 input {
     border: solid 1px;
     margin: 0 20px;
@@ -11,6 +15,39 @@ input {
     align-items: right;
 }
 
-.text-custom {
+/*.text-custom {
     color: black;
-  }
+  }*/
+
+div.loginMaster {
+    width: 100%;
+    overflow: auto;
+}
+
+div.loginMaster div{
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    float: left;
+}
+
+div.login{
+  border-right-width: 1px;
+  border-right-color: black;
+}
+
+div.cadastro{
+  margin-top: 80px;
+}
+
+a:link{
+  color: #BA110C;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #800808;
+  background-color: transparent;
+  text-decoration: underline;
+}
