@@ -23,46 +23,31 @@ export class DetalhesComponent {
     }
   }
 
-  public adicionarItem(obj:Produto){
-    let json = localStorage.getItem("carrinho");
-    let jsonCliente = localStorage.getItem("cliente");
-    let carrinho: Carrinho = new Carrinho();
-    let item: Item = new Item();
-    if(json == null){
-        item.id = obj.id;
-        item.produto = obj;
-        item.quantidade = 1;
-        item.valor = obj.valor;
-        carrinho.id = 1;
-        carrinho.total = obj.valor;
-        carrinho.itens.push(item);
-        if(jsonCliente != null) carrinho.cliente = JSON.parse(jsonCliente);
+adicionarItem(item: Produto) {
+  // Verifica se estamos no ambiente do navegador antes de usar localStorage
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    // Recupera o carrinho do LocalStorage ou inicializa um array vazio
+    let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verifica se o item já existe no carrinho
+    const itemExistente = carrinho.find((produto: Produto) => produto.id === item.id);
+
+    if (itemExistente) {
+      // Se o item já existir, incrementa a quantidade
+      itemExistente.quantidade++;
     } else {
-      let achou = false;
-      carrinho = JSON.parse(json);
-      for(let i=0; i<carrinho.itens.length; i++){
-        if(carrinho.itens[i].id == obj.id){
-          carrinho.itens[i].quantidade = carrinho.itens[i].quantidade + 1;
-          carrinho.itens[i].valor =  carrinho.itens[i].quantidade * carrinho.itens[i].produto.valor;
-          achou = true;
-          break;
-        }
-      }
-      if(!achou){
-        item.id = obj.id;
-        item.produto = obj;
-        item.quantidade = 1;
-        item.valor = obj.valor;
-        carrinho.itens.push(item);
-      }
+      // Se o item não existir, adiciona o novo item com quantidade 1
+      carrinho.push({ ...item, quantidade: 1 });
     }
 
-    carrinho.total = 0;
-    for(let i = 0; i < carrinho.itens.length; i++){
-      carrinho.total = carrinho.itens[i].valor + carrinho.total;
-    }
+    // Salva o carrinho atualizado no LocalStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    // Redireciona para a página do carrinho usando href
     window.location.href = "./carrinho";
+  } else {
+    console.error('localStorage não está disponível no ambiente atual.');
   }
+}
+
 }

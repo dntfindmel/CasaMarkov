@@ -1,1 +1,29 @@
-<p>carrinho works!</p>
+<section *ngIf="carrinho.length > 0; else carrinhoVazio">
+  <div class="carrinho-div" *ngFor="let produto of carrinho">
+    <div>
+      <img src="produto_{{ produto.id }}.jpg" />
+    </div>
+
+    <div>
+      <h3>{{ produto.nome }}</h3>
+      <div>
+        <span> Quantidade: </span>
+        <button (click)="diminuirQuantidade(produto)" [disabled]="produto.quantidade <= 1"><b> - </b></button>
+        {{ produto.quantidade }}
+        <button (click)="aumentarQuantidade(produto)"><b> + </b></button>
+      </div>
+      <p><b>R$ {{ produto.valor }}</b></p>
+      <p>Subtotal: R$ {{ produto.valor * produto.quantidade }}</p>
+      <br>
+      <button (click)="removerItem(produto)">Remover</button>
+    </div>
+  </div>
+
+  <div class="total-carrinho">
+    <h3>Total: R$ {{ getTotal() }}</h3>
+  </div>
+</section>
+
+<ng-template #carrinhoVazio>
+  <p>O carrinho está vazio.</p>
+</ng-template>
