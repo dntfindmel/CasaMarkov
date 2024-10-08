@@ -1,0 +1,14 @@
+<h2>Resultados da Busca</h2>
+
+<div *ngIf="produtosFiltrados.length > 0; else noResults">
+  <div *ngFor="let produto of produtosFiltrados">
+    <h3>{{ produto.nome }}</h3>
+    <p>{{ produto.descritivo }}</p>
+    <p>Preço: R$ {{ produto.valor }}</p>
+    <button (click)="verDetalhe(produto)">Ver Detalhe</button>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <p>{{ mensagem }}</p>
+</ng-template>
