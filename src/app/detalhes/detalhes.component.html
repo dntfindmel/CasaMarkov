@@ -11,7 +11,10 @@
     <br>
     <div class="detalhes-preco">
       <p style="font-weight: bold; font-size: 20px;">R$ {{item.valor}}</p>
-      <button *ngIf="item.quantidade > 0" (click)="adicionarItem(item)" type="button" class="btn btn-outline-warning text-custom">Adicionar ao carrinho</button>
+      <button *ngIf="item.quantidade > 0" (click)="adicionarItem(item)" type="button" class="btn btn-outline-warning text-custom">
+        Adicionar ao carrinho
+      </button>
+
     </div>
 
     <div *ngIf="item.quantidade <= 0">Sem estoque</div>

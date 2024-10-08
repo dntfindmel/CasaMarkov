@@ -1,18 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Produto } from '../model/produto';
-import { Carrinho } from '../model/carrinho';
-import { Item } from '../model/item';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
-  selector: 'app-vitrine',
+  selector: 'app-busca',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './vitrine.component.html',
-  styleUrl: './vitrine.component.css'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './busca.component.html',
+  styleUrl: './busca.component.css'
 })
 
-export class VitrineComponent {
+export class BuscaComponent {
+  public mensagem: string = "";
+  public filtro: string = "";
+  public produtosFiltrados: Produto[] = [];
+
   public lista: Produto[] = [
     {id: 1, nome: "Deck de Commander - Duskmourn: House of Horror - Miracle Worker", descritivo: "Em Duskmourn: House of Horror, os jogadores mais destemidos conhecerão uma Casa que ocupa um plano inteiro, onde seus maiores medos se tornarão realidade.", valor: 349.90, quantidade: 10, keywords: "MTG"},
     {id: 2, nome: "Deck de Commander - Duskmourn: House of Horror - Jump Scare", descritivo: "Em Duskmourn: House of Horror, os jogadores mais destemidos conhecerão uma Casa que ocupa um plano inteiro, onde seus maiores medos se tornarão realidade.", valor: 248.90, quantidade: 8, keywords: "MTG"},
@@ -30,9 +35,34 @@ export class VitrineComponent {
     {id: 12, nome: "Deck Estrutural - Seto Kaiba", descritivo: "O Deck Estrutural Seto Kaiba contém 45 Estampas Ilustradas.", valor: 349.90, quantidade:0, keywords: "YUGIOH"}
   ]
 
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    // Captura o termo de busca da URL
+    this.route.queryParams.subscribe(params => {
+      this.filtro = params['q'] || '';
+      this.filtrarProdutos(this.filtro);
+    });
+  }
+
+  filtrarProdutos(termo: string) {
+    termo = termo.toLowerCase();
+    this.produtosFiltrados = this.lista.filter(produto =>
+      produto.nome.toLowerCase().includes(termo) ||
+      produto.descritivo.toLowerCase().includes(termo) ||
+      produto.keywords.toLowerCase().includes(termo)
+    );
+
+    if (this.produtosFiltrados.length === 0) {
+      this.mensagem = "Nenhum produto encontrado.";
+    } else {
+      this.mensagem = "";
+    }
+  }
+
   public verDetalhe(item:Produto){
     localStorage.setItem("produto", JSON.stringify(item));
-    window.location.href = "./detalhes";
+    window.location.href = "./detalhe";
   }
 
   adicionarItem(item: Produto) {
