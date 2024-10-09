@@ -51,7 +51,8 @@ button {
   margin: 0 auto;
 }
 
-@media (max-width: 420px) {
+/*@media (max-width: 420px) {*/
+@media (orientation: portrait) {
   section {
     display: block;
   }
@@ -62,5 +63,10 @@ button {
 
   .card {
     margin: 10px 0;
+  }
+
+  .carousel-item img {
+    height: 275px;
+    object-fit: cover;
   }
 }
