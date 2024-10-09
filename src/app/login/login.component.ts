@@ -17,11 +17,11 @@ export class LoginComponent {
     if(this.obj.email=='cm@casamarkov.com.br' &&
         this.obj.senha=='123456'){
           localStorage.setItem("cliente", JSON.stringify(this.obj));
-          window.location.href="./cadastro";
+          window.location.href="./vitrine";
     } else {
-      this.mensagem = "email ou senha invalidos";
+      this.mensagem = "Email ou senha inválidos";
       localStorage.removeItem("cliente");
-    }  
+    }
   }
 
   public novoCadastro(){

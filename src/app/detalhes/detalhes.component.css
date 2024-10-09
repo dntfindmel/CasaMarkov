@@ -58,3 +58,16 @@ button {
   transform: scale(1.1);
   border: 2px solid #800808;
 }
+
+@media (max-width: 420px)
+ {
+  .detalhe-div {
+    display: block;
+    width: 90%;
+  }
+
+  .detalhes-info {
+    width: 90%;
+    padding: 0;
+  }
+ }

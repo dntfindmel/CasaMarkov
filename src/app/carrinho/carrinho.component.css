@@ -35,3 +35,10 @@ p {
 .total-carrinho {
   text-align: center;
 }
+
+@media (max-width: 420px)
+ {
+  .carrinho-div {
+    width: 95%;
+  }
+ }

@@ -19,3 +19,17 @@ a {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+.btn-busca {
+  border: 1px solid #800808;
+  background-color: #800808;
+  padding: 4.5px;
+  margin-left: -4px;
+  border-radius: 0 10px 10px 0;
+  color: black;
+}
+
+.btn-busca:hover {
+  border: 1px solid #BA110C;
+  background-color: #BA110C;
+}

@@ -62,30 +62,23 @@ export class BuscaComponent {
 
   public verDetalhe(item:Produto){
     localStorage.setItem("produto", JSON.stringify(item));
-    window.location.href = "./detalhe";
+    window.location.href = "./detalhes";
   }
 
   adicionarItem(item: Produto) {
-    // Verifica se estamos no ambiente do navegador antes de usar localStorage
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      // Recupera o carrinho do LocalStorage ou inicializa um array vazio
-      let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
 
-      // Verifica se o item já existe no carrinho
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
       const itemExistente = carrinho.find((produto: Produto) => produto.id === item.id);
 
       if (itemExistente) {
-        // Se o item já existir, incrementa a quantidade
         itemExistente.quantidade++;
       } else {
-        // Se o item não existir, adiciona o novo item com quantidade 1
         carrinho.push({ ...item, quantidade: 1 });
       }
 
-      // Salva o carrinho atualizado no LocalStorage
       localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-      // Redireciona para a página do carrinho usando href
       window.location.href = "./carrinho";
     } else {
       console.error('localStorage não está disponível no ambiente atual.');

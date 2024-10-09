@@ -4,12 +4,13 @@
 
     <div class="login">
         <h1>Já tem cadastro?</h1>
-        <br>
         <b>{{mensagem}}</b><br>
         E-mail: <br>
         <input type="email" [(ngModel)]="obj.email"><br>
         Senha: <br>
         <input type="password" [(ngModel)]="obj.senha"><br>
+        <br>
+        <br>
         <button (click)="fazerLogin()" type="button" class="btn btn-outline-warning text-custom">Entrar</button> <b><a href="./login" color="red">Esqueci a senha</a></b>
     </div>
 

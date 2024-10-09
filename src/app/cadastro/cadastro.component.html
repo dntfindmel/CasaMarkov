@@ -1,22 +1,46 @@
 <div class="cadastro">
-    <br>
-    <h1>Meu Cadastro</h1>
-    <b>{{mensagem}}</b><br>
-    <div class="cadMaster">
-    
-        <div class="cadEsquerda">
-            Nome Completo: <br><input type="text" [(ngModel)]="obj.nome"><br>
-            Email: <br><input type="email" [(ngModel)]="obj.email"><br>
-            Telefone: <br><input type="text" [(ngModel)]="obj.telefone"><br>
-            Rua: <br><input type="text" [(ngModel)]="obj.logradouro"><br>
-        </div>
-        <div class="cadDireita">
-            CEP: <br><input type="text" [(ngModel)]="obj.cep"><br>
-            Cidade: <br><input type="text" [(ngModel)]="obj.cidade"><br>
-            Complemento: <br><input type="text" [(ngModel)]="obj.complemento"><br>
-            Senha: <br><input type="password" [(ngModel)]="obj.senha"><br>
-        </div>
+  <br>
+  <h1>Meu Cadastro</h1>
+  <b>{{mensagem}}</b><br>
+  <div class="cadMaster">
 
-    </div>
-    <button (click)="gravar()" type="button" class="btn btn-outline-warning text-custom">Gravar</button>
+      <div class="cadEsquerda">
+          Nome Completo: <br>
+          <input type="text" [(ngModel)]="obj.nome" name="nome" required #nome="ngModel"><br>
+          <div *ngIf="!obj.nome && nome.touched">
+              <small style="color:red">Nome é obrigatório</small>
+          </div>
+
+          Email: <br>
+          <input type="email" [(ngModel)]="obj.email" name="email" required #email="ngModel"><br>
+          <div *ngIf="email.invalid && email.touched">
+              <small style="color:red" *ngIf="!validarEmail(obj.email)">Formato de email inválido</small>
+          </div>
+
+          Telefone: <br>
+          <input type="text" [(ngModel)]="obj.telefone" name="telefone" required maxlength="11" #telefone="ngModel"><br>
+          <div *ngIf="telefone.invalid && telefone.touched">
+              <small style="color:red" *ngIf="telefone.errors?.['maxLenght']">Máximo de 11 dígitos</small>
+          </div>
+
+          Rua: <br>
+          <input type="text" [(ngModel)]="obj.logradouro" name="logradouro"><br>
+      </div>
+
+      <div class="cadDireita">
+          CEP: <br>
+          <input type="text" [(ngModel)]="obj.cep" name="cep"><br>
+          Cidade: <br>
+          <input type="text" [(ngModel)]="obj.cidade" name="cidade"><br>
+          Complemento: <br>
+          <input type="text" [(ngModel)]="obj.complemento" name="complemento"><br>
+          Senha: <br>
+          <input type="password" [(ngModel)]="obj.senha" name="senha" #senha="ngModel"><br>
+          <div *ngIf="!obj.senha && senha.touched">
+            <small style="color:red">Senha é obrigatório</small>
+        </div>
+      </div>
+
+  </div>
+  <button (click)="gravar()" type="submit" class="btn btn-outline-warning text-custom">Gravar</button>
 </div>

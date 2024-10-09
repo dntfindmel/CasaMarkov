@@ -10,7 +10,7 @@ button {
 input {
     border: solid 1px;
     margin: 0 20px;
-    margin: 5px;  
+    margin: 5px;
     padding: 5px;
     align-items: right;
 }
@@ -50,4 +50,35 @@ a:hover{
   color: #800808;
   background-color: transparent;
   text-decoration: underline;
+}
+
+.text-custom {
+  background-color: #FFD700;
+}
+
+h1 {
+  font-family: "Marko One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
+  padding: 40px 0 20px
+}
+
+p, .btn {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.btn:hover {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+@media (max-width: 420px) {
+  div.loginMaster div{
+    width:  100%;
+  }
 }

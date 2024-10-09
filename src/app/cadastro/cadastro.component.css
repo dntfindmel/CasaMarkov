@@ -6,14 +6,15 @@ button {
 input {
     border: solid 1px;
     margin: 0 20px;
-    margin: 5px;  
+    margin: 5px;
     padding: 5px;
     align-items: right;
 }
 
 .text-custom {
-    color: black;
-  }
+  color: black;
+  background-color: #FFD700;
+}
 
 .cadastro {
   display: inline-table;
@@ -28,4 +29,35 @@ input {
   grid-gap: 10px;
   padding: 10px;
   text-align: center;
+}
+
+h1 {
+  font-family: "Marko One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
+  padding: 40px 0 20px
+}
+
+p, .btn {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.btn:hover {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+@media (max-width: 420px) {
+  .cadastro{
+    width:  100%;
+    margin: 0 auto;
+  }
+  .cadMaster {
+    display: block;
+  }
 }

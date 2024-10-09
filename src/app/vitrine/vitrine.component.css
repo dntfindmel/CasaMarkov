@@ -50,3 +50,17 @@ button {
   width: 50%;
   margin: 0 auto;
 }
+
+@media (max-width: 420px) {
+  section {
+    display: block;
+  }
+
+  .card-div {
+    display: block;
+  }
+
+  .card {
+    margin: 10px 0;
+  }
+}
