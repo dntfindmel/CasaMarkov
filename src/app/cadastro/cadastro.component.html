@@ -1,11 +1,22 @@
-<h1>Meu Cadastro</h1>
-<b>{{mensagem}}</b><br>
-Nome: <input type="text" [(ngModel)]="obj.nome"><br>
-E-mail:<input type="email" [(ngModel)]="obj.email"><br>
-Telefone:<input type="text" [(ngModel)]="obj.telefone"><br>
-Rua:<input type="text" [(ngModel)]="obj.logradouro"><br>
-CEP:<input type="text" [(ngModel)]="obj.cep"><br>
-Cidade:<input type="text" [(ngModel)]="obj.cidade"><br>
-Complemento:<input type="text" [(ngModel)]="obj.complemento"><br>
-Senha:<input type="password" [(ngModel)]="obj.senha"><br>
-<button (click)="gravar()" type="button" class="btn btn-outline-warning text-custom">Gravar</button>
+<div class="cadastro">
+    <br>
+    <h1>Meu Cadastro</h1>
+    <b>{{mensagem}}</b><br>
+    <div class="cadMaster">
+    
+        <div class="cadEsquerda">
+            Nome Completo: <br><input type="text" [(ngModel)]="obj.nome"><br>
+            Email: <br><input type="email" [(ngModel)]="obj.email"><br>
+            Telefone: <br><input type="text" [(ngModel)]="obj.telefone"><br>
+            Rua: <br><input type="text" [(ngModel)]="obj.logradouro"><br>
+        </div>
+        <div class="cadDireita">
+            CEP: <br><input type="text" [(ngModel)]="obj.cep"><br>
+            Cidade: <br><input type="text" [(ngModel)]="obj.cidade"><br>
+            Complemento: <br><input type="text" [(ngModel)]="obj.complemento"><br>
+            Senha: <br><input type="password" [(ngModel)]="obj.senha"><br>
+        </div>
+
+    </div>
+    <button (click)="gravar()" type="button" class="btn btn-outline-warning text-custom">Gravar</button>
+</div>

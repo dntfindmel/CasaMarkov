@@ -14,3 +14,18 @@ input {
 .text-custom {
     color: black;
   }
+
+.cadastro {
+  display: inline-table;
+  text-align: center;
+  width: 50%;
+  margin-left:25%;
+}
+
+.cadMaster {
+  display: grid;
+  grid: auto / auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  text-align: center;
+}

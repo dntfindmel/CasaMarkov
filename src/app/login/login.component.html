@@ -1,10 +1,22 @@
 <br>
-<h1>Faça aqui seu Login</h1>
-<br>
-<b>{{mensagem}}</b><br>
-E-mail: <input type="email" [(ngModel)]="obj.email"><br>
-Senha: <input type="password" [(ngModel)]="obj.senha"><br>
-<button (click)="fazerLogin()" type="button" class="btn btn-outline-warning text-custom">Entrar</button> <button type="button" class="btn btn-outline-warning text-custom">Esqueci a senha</button>
-<br> <br> <br>
-<h1>Ainda não tem cadastro?</h1>
-<button (click)="novoCadastro()" type="button" class="btn btn-outline-warning text-custom">Cadastre-se aqui</button>
+
+<div class="loginMaster">
+
+    <div class="login">
+        <h1>Já tem cadastro?</h1>
+        <br>
+        <b>{{mensagem}}</b><br>
+        E-mail: <br>
+        <input type="email" [(ngModel)]="obj.email"><br>
+        Senha: <br>
+        <input type="password" [(ngModel)]="obj.senha"><br>
+        <button (click)="fazerLogin()" type="button" class="btn btn-outline-warning text-custom">Entrar</button> <b><a href="./login" color="red">Esqueci a senha</a></b>
+    </div>
+
+    <div class="cadastro">
+        <h1>Ainda não tem cadastro?</h1>
+        <br>
+        <button (click)="novoCadastro()" type="button" class="btn btn-outline-warning text-custom">Cadastre-se aqui</button>
+    </div>
+
+</div>
