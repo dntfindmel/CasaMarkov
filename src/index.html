@@ -13,49 +13,30 @@
 <body>
   <header class="bg-black">
     <nav x-data="{ isOpen: false }" class="bg-black shadow">
-      <div class="container px-10  py-3">
-        <div class="flex items-center justify-between">
-          <!-- Logo e Menu Hambúrguer -->
-          <div class="flex items-center">
+      <div class="container px-10 py-3">
+        <div class="flex items-center justify-between lg:justify-between lg:flex lg:items-center">
+          <!-- Ícone do Menu Hambúrguer (esquerda em telas pequenas) -->
+          <button @click="isOpen = !isOpen" type="button" class="text-white focus:outline-none lg:hidden order-first">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+
+          <!-- Logo (centralizado apenas em telas pequenas) -->
+          <div class="text-left flex-grow lg: text-center lg:flex-grow-0 lg:mx-0">
             <a href="#">
               <h1 class="text-red-600">Casa Markov</h1>
             </a>
-
-            <!-- Ícone do Menu Hambúrguer (aparece apenas no mobile) -->
-            <button @click="isOpen = !isOpen" type="button" class="lg:hidden text-white focus:outline-none">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-            </button>
           </div>
 
-          <!-- Menu de Navegação -->
-          <div :class="{'block': isOpen, 'hidden': !isOpen}" class="lg:flex lg:items-center lg:justify-center w-full lg:w-auto lg:block hidden">
-            <div class="flex flex-col lg:flex-row lg:px-16 lg:space-x-4 text-gray-600 capitalize dark:text-gray-300">
-              <a href="#mtg" class="mt-2 lg:mt-0 hover:text-[#BA110C]">MTG</a>
-              <a href="#pokemon" class="mt-2 lg:mt-0 hover:text-[#BA110C]">POKEMON</a>
-              <a href="#yugioh" class="mt-2 lg:mt-0 hover:text-[#BA110C]">YU GI OH</a>
-            </div>
-
-            <!-- Barra de Busca (aparece apenas em telas grandes) -->
-            <div class="relative mt-4 lg:mt-0 lg:mx-4 hidden lg:block">
-              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </span>
-
-              <form action="/busca" method="get">
-                <input
-                  type="text"
-                  name="q"
-                  class="w-full py-1 pl-10 pr-4 text-black placeholder-black bg-white border-b border-gray-600 lg:w-56 lg:border-transparent focus:outline-none focus:border-gray-600"
-                  placeholder="Busque um produto"
-                >
-                <button class="btn-busca" type="submit">Buscar</button>
-              </form>
-            </div>
+        <!-- Menu de Navegação -->
+        <div :class="{'block': isOpen}" class="lg:flex lg:items-center lg:space-x-4 lg:justify-center w-full lg:w-auto lg:block hidden">
+          <div class="flex flex-col lg:flex-row lg:px-16 lg:space-x-4 text-gray-600 capitalize dark:text-gray-300">
+            <a href="#mtg" class="mt-0 lg:mt-0 hover:text-[#BA110C]">MTG</a>
+            <a href="#pokemon" class="mt-0 lg:mt-0 hover:text-[#BA110C]">POKEMON</a>
+            <a href="#yugioh" class="mt-0 lg:mt-0 hover:text-[#BA110C]">YU GI OH</a>
           </div>
+        </div>
 
           <!-- Botões do Carrinho e Login -->
           <div class="flex space-x-2">
@@ -70,6 +51,34 @@
               </svg>
             </a>
           </div>
+        </div>
+
+        <!-- Menu de Navegação -->
+        <div :class="{'hidden': !isOpen}" class="w-full">
+          <div class="flex flex-col lg:flex-row lg:px-16 lg:space-x-4 text-gray-600 capitalize dark:text-gray-300">
+            <a href="#mtg" class="mt-0 lg:mt-0 hover:text-[#BA110C]">MTG</a>
+            <a href="#pokemon" class="mt-0 lg:mt-0 hover:text-[#BA110C]">POKEMON</a>
+            <a href="#yugioh" class="mt-0 lg:mt-0 hover:text-[#BA110C]">YU GI OH</a>
+          </div>
+        </div>
+        
+        <!-- Barra de Busca (aparece apenas em telas grandes) -->
+        <div class="text-center relative mt-4 lg:mt-0 lg:mx-4 hidden lg:block">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none">
+              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+
+          <form action="/busca" method="get">
+            <input
+              type="text"
+              name="q"
+              class="w-full py-1 pl-10 pr-4 text-black placeholder-black bg-white border-b border-gray-600 lg:w-56 lg:border-transparent focus:outline-none focus:border-gray-600"
+              placeholder="Busque um produto"
+            >
+            <button class="btn-busca" type="submit">Buscar</button>
+          </form>
         </div>
       </div>
     </nav>
