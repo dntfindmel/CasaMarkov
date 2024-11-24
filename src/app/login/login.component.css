@@ -41,7 +41,8 @@ div.cadastro{
 }
 
 a:link{
-  color: #BA110C;
+  color: black;
+  /*color: #BA110C;*/
   background-color: transparent;
   text-decoration: none;
 }
