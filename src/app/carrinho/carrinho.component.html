@@ -1,5 +1,5 @@
-<section *ngIf="carrinho.length > 0; else carrinhoVazio">
-  <div class="carrinho-div" *ngFor="let produto of carrinho">
+<section *ngIf="cesta.length > 0; else carrinhoVazio">
+  <div class="carrinho-div" *ngFor="let produto of cesta">
     <div>
       <img src="produto_{{ produto.id }}.jpg" />
     </div>
@@ -21,8 +21,9 @@
 
   <div class="total-carrinho">
     <h3>Total: R$ {{ getTotal() }}</h3>
+    <button (click)="finalizarCompra()" type="submit" class="btn btn-outline-warning text-custom">Finalizar Compra</button>
   </div>
-</section>
+  </section>
 
 <ng-template #carrinhoVazio>
   <p>O carrinho está vazio.</p>
