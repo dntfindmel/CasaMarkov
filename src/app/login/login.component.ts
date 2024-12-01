@@ -37,15 +37,19 @@ export class LoginComponent {
   }
 
   public esqueciSenha(){ //Não criei tela nova, mas colocar o email no campo de login e clicar em esqueci a senha, ele busca no banco se o email existe,se sim mostra a mensagem de email enviado, apesar de não enviar nada
-    this.service.pesquisarEmail(this.obj.email).subscribe ({
-      next: (data) => {
-        if(data){
-          this.mensagem = "Email de recuperação de senha enviado para sua caixa de entrada!"
-        } else {
-          this.mensagem = "Email não cadastrado ou digitado incorretamente."
-        } 
-      }
-    })
+    if (this.obj.email){
+      this.service.pesquisarEmail(this.obj.email).subscribe ({
+        next: (data) => {
+          if(data){
+            this.mensagem = "Email de recuperação de senha enviado para sua caixa de entrada!"
+          } else {
+            this.mensagem = "Email não cadastrado ou digitado incorretamente."
+          } 
+        }
+      })
+    } else {
+      this.mensagem = "Digite o Email para ser lembrado no campo de Email de Login."
+    }
   }
   
 

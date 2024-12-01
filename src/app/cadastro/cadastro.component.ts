@@ -45,6 +45,7 @@ export class CadastroComponent {
           } else {
             this.mensagem = "Cliente encontrado com sucesso";
             this.obj = data;
+            console.log(this.obj.id);
           }          
         },
         error: (err) => (this.mensagem = "Ocorreu um erro ao tentar pesquisar."),
@@ -91,6 +92,51 @@ export class CadastroComponent {
               });
             } else {
               this.mensagem = "Exclusão não confirmada"
+            }
+          }
+        },
+        error: (err) => {
+          this.mensagem = "Ocorreu um erro ao tentar pesquisar.";
+        }
+      });
+    } else if (this.obj.email == "") {
+      this.mensagem = "Campo Email vazio! Não foi possível pesquisar.";
+    } else {
+      this.mensagem = "Insira um email válido para pesquisar!";
+    }
+  }
+
+  public alterar(){ //Alteração é menos perigoso, mas coloquei para ser dificil também
+    if (this.validarEmail(this.obj.email)) {
+      this.service.pesquisarEmail(this.obj.email).subscribe({ // Faz a pesquisa antes de tentar deletar, se não encontra nada no banco nem tenta
+        next: (data) => {
+          if (!data) {
+            this.mensagem = "Registro não encontrado!";
+          } else {
+              if(this.validarCampos()){
+              // Se o email existe, primeiro testa se tem alguma informação diferente do banco de dados
+              if(JSON.stringify(data)==JSON.stringify(this.obj)){
+                this.mensagem = "Não houve alteração no cliente!";
+              } else {
+                //Se mudou alguma coisa, ele primeiro confirma se quer alterar alguma coisa
+                const confirmacao = window.confirm('Você tem certeza que deseja alterar o cadastro do cliente?');
+                if (confirmacao) {
+                  this.service.alter(this.obj).subscribe({ 
+                    next: (data) => {
+                      this.mensagem = data;
+                      localStorage.setItem("cliente", JSON.stringify(this.obj));
+                      // Atualiza no localstorage com os dados atuais
+                    },
+                    error: (err) => {
+                      this.mensagem = "Não foi possível alterar o cliente agora. Tente novamente mais tarde.";
+                    }
+                  });
+                } else {
+                  this.mensagem = "Alteração não confirmada"
+                }
+              }
+            } else {
+              this.mensagem = "Por favor, preencha os campos obrigatórios corretamente.";
             }
           }
         },

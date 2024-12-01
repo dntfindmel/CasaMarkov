@@ -30,4 +30,8 @@ export class ClienteService {
   delete(email: string) : Observable<string> {
     return this.http.delete<string>("http://localhost:8080/api/cliente/email/"+ email, { responseType: 'text' as 'json' })
   }
+
+  alter(obj: Cliente) : Observable<string>{
+    return this.http.put<string>("http://localhost:8080/api/cliente", obj, { responseType: 'text' as 'json' })
+  }
 }
