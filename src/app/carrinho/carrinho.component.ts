@@ -76,10 +76,14 @@ export class CarrinhoComponent {
           this.itens.forEach(item => {
             item.pedidoId = this.carrinho.id;
           }); //Essa parte do Id ta funcionando corretamente, o erro está como o JPA esta batendo no banco
-          this.itemService.gravarItens(this.itens).subscribe({
-            next: (data) => {
+          this.itemService.gravarItens(this.itens, this.carrinho.id).subscribe({
+            next: (data2) => {
                 //Aqui depois ele manda um pop up falando compra efetuada com sucesso e puxa o endereço do cliente nesse pop up
-                //E depois pode limpar o carrinho e deixar ele vazio
+                window.alert('Compra realizada!\nId da compra: '+this.carrinho.id+'.\nValor Total: R$ '+this.carrinho.total+".\nEndereço de entrega: "+this.carrinho.cliente.logradouro);
+                this.carrinho.id = 0; //necessário zerar o id por enquanto estou fazendo testes e agilidar a insersão dos dados no bd, mas vai ficar pra não zoar os outros pedidos realizados
+                localStorage.removeItem('carrinho');//E depois pode limpar o carrinho e deixar ele vazio e começar a receber novos pedidos- Mas ainda não tem isso, pra facilitar os testes
+                this.cesta =[];
+                this.atualizarLocalStorage();
             },
             error: (err) => {
               console.log("Erro ao tentar gravar os itens do pedido "+err)
@@ -93,7 +97,7 @@ export class CarrinhoComponent {
     }
   }
 
-  public sincronizarItens(): void {
+  public sincronizarItens(): any {
     this.itens = this.cesta.map(produto => {
       const item = new Item();
       item.id = produto.id;

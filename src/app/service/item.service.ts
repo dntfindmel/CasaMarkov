@@ -10,7 +10,7 @@ export class ItemService {
 
   constructor(private http : HttpClient) { }
 
-  gravarItens(obj: Item[]): Observable<number>{
-    return this.http.post<number>("http://localhost:8080/api/item", obj, { responseType: 'number' as 'json' });
+  gravarItens(obj: Item[], idPd: number): Observable<number>{
+    return this.http.post<number>("http://localhost:8080/api/item/"+ idPd, obj, { responseType: 'number' as 'json' });
   }
 }
