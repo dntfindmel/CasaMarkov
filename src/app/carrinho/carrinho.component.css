@@ -36,6 +36,29 @@ p {
   text-align: center;
 }
 
+.btn {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.btn:hover {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+button {
+  margin: 0 20px;
+  align-items: right;
+}
+
+.text-custom {
+  color: black;
+  background-color: #FFD700;
+}
+
 @media (max-width: 420px)
  {
   .carrinho-div {

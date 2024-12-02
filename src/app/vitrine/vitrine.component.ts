@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Produto } from '../model/produto';
 import { Carrinho } from '../model/carrinho';
 import { Item } from '../model/item';
+import { ProdutoService } from '../service/produto.service';
 
 @Component({
   selector: 'app-vitrine',
@@ -13,7 +14,29 @@ import { Item } from '../model/item';
 })
 
 export class VitrineComponent {
-  public lista: Produto[] = [
+
+  constructor(private produtoService: ProdutoService) {}
+
+  ngOnInit(): void {
+    this.carregarProdutos();
+  }
+  //Necessário para carregar os dados do back na variavel, sem esse init ele não carrega nada e a vitrine fica vazia
+
+
+  public lista: Produto[] = [];
+
+  carregarProdutos(): void {
+    this.produtoService.listar().subscribe({
+      next: (data) => {
+        this.lista = data; // Armazena os resultados do listar na variável lista, direto do backend
+      },
+      error: (err) => {
+        console.error('Erro ao carregar os produtos:', err);
+      },
+    });
+  }  
+
+  /*public lista: Produto[] = [
     {id: 1, nome: "Deck de Commander - Duskmourn: House of Horror - Miracle Worker", descritivo: "Em Duskmourn: House of Horror, os jogadores mais destemidos conhecerão uma Casa que ocupa um plano inteiro, onde seus maiores medos se tornarão realidade.", valor: 349.90, quantidade: 10, keywords: "MTG"},
     {id: 2, nome: "Deck de Commander - Duskmourn: House of Horror - Jump Scare", descritivo: "Em Duskmourn: House of Horror, os jogadores mais destemidos conhecerão uma Casa que ocupa um plano inteiro, onde seus maiores medos se tornarão realidade.", valor: 248.90, quantidade: 8, keywords: "MTG"},
     {id: 3, nome: "Deck de Commander - Duskmourn: House of Horror - Endless Punishment", descritivo: "Em Duskmourn: House of Horror, os jogadores mais destemidos conhecerão uma Casa que ocupa um plano inteiro, onde seus maiores medos se tornarão realidade.", valor: 349.90, quantidade: 15, keywords: "MTG"},
@@ -28,7 +51,7 @@ export class VitrineComponent {
     {id: 10, nome: "Deck Estrutural - Samurai Warlords", descritivo: "O Samurai Warlords Structure Deck vem com 41 cartas, incluindo um novíssimo Six Samurai Xyz Monster! E está repleto de algumas das cartas Six Samurai mais quentes já lançadas, de 'Great Shogun Shien' e 'Legendary Six Samurai - Kizan' a 'Six Samurai United' e 'Musakani Magatama'.", valor: 599.90, quantidade: 7, keywords: "YUGIOH"},
     {id: 11, nome: "Deck Estrutural - Yugi Muto", descritivo: "O Deck Estrutural Yugi Muto contém 45 Estampas Ilustradas.", valor: 399.90, quantidade: 12, keywords: "YUGIOH"},
     {id: 12, nome: "Deck Estrutural - Seto Kaiba", descritivo: "O Deck Estrutural Seto Kaiba contém 45 Estampas Ilustradas.", valor: 349.90, quantidade:0, keywords: "YUGIOH"}
-  ]
+  ]*/
 
   public verDetalhe(item:Produto){
     localStorage.setItem("produto", JSON.stringify(item));
@@ -61,4 +84,5 @@ export class VitrineComponent {
       console.error('localStorage não está disponível no ambiente atual.');
     }
   }
+ 
 }
